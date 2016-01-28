@@ -8,6 +8,11 @@ import net.vicp.lylab.utils.Utils;
 public class CheckRuntimeAction extends BaseAction {
 
 	@Override
+	public boolean foundBadParameter() {
+		return false;
+	}
+	
+	@Override
 	public void exec() {
 		try {
 			do {
