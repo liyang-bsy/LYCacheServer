@@ -1,0 +1,19 @@
+[TREE]
+!debug=0
+server=LYCacheServer
+
+$Actions=action.txt
+
+$Singleton=init.txt
+
+#---------------------protocol defines---------------------
+*LYLabProtocol=net.vicp.lylab.utils.internet.protocol.LYLabProtocol
+
+*protocol=&LYLabProtocol
+*heartBeat=net.vicp.lylab.core.model.SimpleHeartBeat
+#---------------------protocol defines---------------------
+
+#--------------server port
+port=2000
+
+ipWhiteList=127.0.0.1

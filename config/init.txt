@@ -1,0 +1,63 @@
+#---------------------LYTQ
+*LYTaskQueue=net.vicp.lylab.utils.tq.LYTaskQueue
+
+#---------------------LYCache
+*LYCache=net.vicp.lylab.utils.cache.LYCache
+^memoryLimitation=6442450944
+^expireTime=259200000
+^threshold=0.9
+
+#---------------------Logger
+*Logger=net.vicp.lylab.server.utils.Logger
+^filePath=D:/LYCacheServer/record
+^fileSuffix=.log
+
+#---------------------Timer
+*RefreshCache=net.vicp.lylab.utils.cache.RefreshCache
+^lyCache=&LYCache
+*RemoveOldLog=net.vicp.lylab.server.timer.RemoveOldLog
+^logger=&Logger
+*HeartBeat=net.vicp.lylab.server.timer.HeartBeat
+^serverName=&server
+
+[]timerJobs=&RefreshCache
+[]timerJobs=&HeartBeat
+[]timerJobs=&RemoveOldLog
+
+*LYTimer=net.vicp.lylab.utils.timer.LYTimer
+^jobs=&timerJobs
+
+#---------------------Timeout Controller
+*TimeoutController=net.vicp.lylab.utils.controller.TimeoutController
+
+#---------------------Save Cache
+*CacheLifeCycle=net.vicp.lylab.utils.cache.CacheLifeCycle
+^savePath=D:/LYServer/LYCache
+^lyCache=&LYCache
+
+#----------------------Filter chain
+*filter1=net.vicp.lylab.server.filter.IPFilter
+[]filters=&filter1
+
+#----------------------RPC Server Client
+#*RPCaller=net.vicp.lylab.utils.rpc.client.RPCaller
+#^rpcHost=127.0.0.1
+#^rpcPort=2001
+#^backgroundServer=true
+#^serverName=&server
+#^serverPort=&port
+#^protocol=&protocol
+#^heartBeat=&heartBeat
+
+#----------------------Server Dispatcher
+*dispatcher=net.vicp.lylab.server.dispatcher.LoggedKeyDispatcher
+^filterChain=&filters
+^actions=&Actions
+
+#----------------------Sync Server
+*SyncServer=net.vicp.lylab.server.runtime.SyncServer
+^taskQueue=&LYTaskQueue
+^dispatcher=&dispatcher
+^port=&port
+^protocol=&protocol
+^heartBeat=&heartBeat
