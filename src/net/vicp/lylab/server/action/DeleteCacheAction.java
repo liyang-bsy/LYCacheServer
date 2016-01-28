@@ -15,14 +15,12 @@ public class DeleteCacheAction extends BaseAction {
 	private String server;
 	private String module;
 	private String key;
-	private Boolean renew;
 
 	@Override
 	public boolean foundBadParameter() {
 		server = (String) getRequest().getBody().get("server");
 		module = (String) getRequest().getBody().get("module");
 		key = (String) getRequest().getBody().get("key");
-		renew = (Boolean) getRequest().getBody().get("renew");
 		if(StringUtils.isBlank(server)) {
 			badParameter = "server";
 			return true;
@@ -42,11 +40,8 @@ public class DeleteCacheAction extends BaseAction {
 	public void exec() {
 		do {
 			LYCache cache = (LYCache) CoreDef.config.getConfig("Singleton").getObject("LYCache");
-
-			if(renew == null)
-				renew = false;
 			
-			byte[] bytes = cache.get(server + "_" + module + "_" + key, renew);
+			byte[] bytes = cache.delete(server + "_" + module + "_" + key);
 			
 			String json = null;
 			try {
