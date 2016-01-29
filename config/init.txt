@@ -50,14 +50,23 @@
 #^heartBeat=&heartBeat
 
 #----------------------Server Dispatcher
-*dispatcher=net.vicp.lylab.server.dispatcher.LoggedKeyDispatcher
+#*dispatcher=net.vicp.lylab.server.dispatcher.LoggedKeyDispatcher
+*dispatcher=net.vicp.lylab.server.dispatcher.CacheMessageDispatcher
 ^filterChain=&filters
-^actions=&Actions
+#^actions=&Actions
 
 #----------------------Sync Server
 *SyncServer=net.vicp.lylab.server.runtime.SyncServer
 ^taskQueue=&LYTaskQueue
 ^dispatcher=&dispatcher
 ^port=&port
+^protocol=&protocol
+^heartBeat=&heartBeat
+
+#----------------------RDMA Sync Server
+*SyncServer=net.vicp.lylab.server.runtime.SyncServer
+^taskQueue=&LYTaskQueue
+^dispatcher=&dispatcher
+^port=2000
 ^protocol=&protocol
 ^heartBeat=&heartBeat

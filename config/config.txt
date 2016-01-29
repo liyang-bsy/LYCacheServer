@@ -8,12 +8,13 @@ $Singleton=init.txt
 
 #---------------------protocol defines---------------------
 *LYLabProtocol=net.vicp.lylab.utils.internet.protocol.LYLabProtocol
+*CacheMessageProtocol=net.vicp.lylab.utils.internet.protocol.CacheMessageProtocol
 
-*protocol=&LYLabProtocol
+*protocol=&CacheMessageProtocol
 *heartBeat=net.vicp.lylab.core.model.SimpleHeartBeat
 #---------------------protocol defines---------------------
 
 #--------------server port
-port=2000
+port=2050
 
 ipWhiteList=127.0.0.1

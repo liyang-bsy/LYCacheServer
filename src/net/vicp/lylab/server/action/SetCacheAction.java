@@ -65,7 +65,7 @@ public class SetCacheAction extends BaseAction {
 			if(expireTime == null)
 				cache.set(server + "_" + module + "_" + key, bytes);
 			else
-				cache.set(server + "_" + module + "_" + key, bytes, expireTime);
+				cache.set(server + "_" + module + "_" + key, bytes, expireTime.intValue());
 
 		getResponse().success(); } while (false);
 	}
