@@ -12,7 +12,7 @@ public class IPFilter extends NonCloneableBaseObject implements Filter<CacheMess
 	public CacheMessage doFilter(Socket socket, CacheMessage request) {
 		String host = socket.getInetAddress().getHostAddress();
 
-		if (request.getKey().startsWith("Privilege")) {
+		if (request.getAction().startsWith("Stop")) {
 			if ("127.0.0.1".equals(host))
 				return null;
 			else

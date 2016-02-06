@@ -2,4 +2,5 @@ CheckRuntimeAction=net.vicp.lylab.server.action.manager.CheckRuntimeAction
 
 GetCacheAction=net.vicp.lylab.server.action.GetCacheAction
 SetCacheAction=net.vicp.lylab.server.action.SetCacheAction
+CompareAndSetCacheAction=net.vicp.lylab.server.action.CompareAndSetCacheAction
 DeleteCacheAction=net.vicp.lylab.server.action.DeleteCacheAction

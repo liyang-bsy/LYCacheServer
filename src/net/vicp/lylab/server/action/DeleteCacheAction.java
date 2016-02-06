@@ -12,23 +12,11 @@ import net.vicp.lylab.utils.cache.LYCache;
 
 public class DeleteCacheAction extends BaseAction {
 
-	private String server;
-	private String module;
 	private String key;
 
 	@Override
 	public boolean foundBadParameter() {
-		server = (String) getRequest().getBody().get("server");
-		module = (String) getRequest().getBody().get("module");
 		key = (String) getRequest().getBody().get("key");
-		if(StringUtils.isBlank(server)) {
-			badParameter = "server";
-			return true;
-		}
-		if(StringUtils.isBlank(module)) {
-			badParameter = "module";
-			return true;
-		}
 		if(StringUtils.isBlank(key)) {
 			badParameter = "key";
 			return true;
@@ -40,9 +28,11 @@ public class DeleteCacheAction extends BaseAction {
 	public void exec() {
 		do {
 			LYCache cache = (LYCache) CoreDef.config.getConfig("Singleton").getObject("LYCache");
-			
-			byte[] bytes = cache.delete(server + "_" + module + "_" + key);
-			
+
+			byte[] bytes;
+			synchronized (lock) {
+				bytes = cache.delete(key);
+			}
 			String json = null;
 			try {
 				json = new String(bytes, CoreDef.CHARSET());

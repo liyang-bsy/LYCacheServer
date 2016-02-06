@@ -4,7 +4,6 @@
 #---------------------LYCache
 *LYCache=net.vicp.lylab.utils.cache.LYCache
 ^memoryLimitation=6442450944
-^expireTime=259200000
 ^threshold=0.9
 
 #---------------------Logger

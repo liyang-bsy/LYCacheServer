@@ -8,7 +8,7 @@ import net.vicp.lylab.core.AbstractAction;
 import net.vicp.lylab.core.BaseAction;
 import net.vicp.lylab.core.CoreDef;
 import net.vicp.lylab.core.model.CacheMessage;
-import net.vicp.lylab.server.action.CacheAction;
+import net.vicp.lylab.server.action.RDMAAction;
 import net.vicp.lylab.server.utils.Logger;
 import net.vicp.lylab.utils.Utils;
 
@@ -17,18 +17,18 @@ public class CacheMessageDispatcher extends AbstractDispatcher<CacheMessage, Cac
 	@Override
 	protected void logger(CacheMessage request, CacheMessage response) {
 		((Logger) CoreDef.config.getConfig("Singleton").getObject("Logger"))
-				.appendLine("Access key:" + request.getKey() + "\nBefore:" + request + "\nAfter:" + response);
+				.appendLine("Access action:" + request.getAction() + "\nBefore:" + request + "\nAfter:" + response);
 	}
 	
 	protected void dispatcher(AbstractAction action, Socket client, CacheMessage request, CacheMessage response) {
 		// gain key from request
-		String key = request.getKey();
+		String key = request.getAction();
 		if (StringUtils.isBlank(key)) {
 			response.setCode(0x00000005);
 			return;
 		}
 		// get action related to key
-		action = new CacheAction();
+		action = new RDMAAction();
 
 		// Initialize action
 		action.setSocket(client);
