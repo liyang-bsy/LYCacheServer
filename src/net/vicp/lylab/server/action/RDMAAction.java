@@ -36,7 +36,8 @@ public class RDMAAction extends AbstractAction {
 			break;
 		case "CompareAndSet":
 			synchronized (lock) {
-				if (!Arrays.equals(cache.get(pair.getLeft(), getRequest().isRenew()), getRequest().getCmpData())) {
+				byte[] oldData = cache.get(pair.getLeft(), getRequest().isRenew());
+				if (oldData != null && !Arrays.equals(oldData, getRequest().getCmpData())) {
 					getResponse().fail(2);
 					break;
 				}

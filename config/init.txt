@@ -31,41 +31,21 @@
 
 #---------------------Save Cache
 *CacheLifeCycle=net.vicp.lylab.utils.cache.CacheLifeCycle
-^savePath=D:/LYServer/LYCache
+^savePath=D:/LYCacheServer/LYCache
 ^lyCache=&LYCache
 
 #----------------------Filter chain
 *filter1=net.vicp.lylab.server.filter.IPFilter
 []filters=&filter1
 
-#----------------------RPC Server Client
-#*RPCaller=net.vicp.lylab.utils.rpc.client.RPCaller
-#^rpcHost=127.0.0.1
-#^rpcPort=2001
-#^backgroundServer=true
-#^serverName=&server
-#^serverPort=&port
-#^protocol=&protocol
-#^heartBeat=&heartBeat
-
 #----------------------Server Dispatcher
-#*dispatcher=net.vicp.lylab.server.dispatcher.LoggedKeyDispatcher
 *dispatcher=net.vicp.lylab.server.dispatcher.CacheMessageDispatcher
 ^filterChain=&filters
-#^actions=&Actions
 
-#----------------------Sync Server
+#----------------------RDMA Server
 *SyncServer=net.vicp.lylab.server.runtime.SyncServer
 ^taskQueue=&LYTaskQueue
 ^dispatcher=&dispatcher
 ^port=&port
-^protocol=&protocol
-^heartBeat=&heartBeat
-
-#----------------------RDMA Sync Server
-*SyncServer=net.vicp.lylab.server.runtime.SyncServer
-^taskQueue=&LYTaskQueue
-^dispatcher=&dispatcher
-^port=2000
 ^protocol=&protocol
 ^heartBeat=&heartBeat

@@ -2,8 +2,6 @@
 !debug=0
 server=LYCacheServer
 
-$Actions=action.txt
-
 $Singleton=init.txt
 
 #---------------------protocol defines---------------------
@@ -15,6 +13,6 @@ $Singleton=init.txt
 #---------------------protocol defines---------------------
 
 #--------------server port
-port=2050
+port=2000
 
 ipWhiteList=127.0.0.1
