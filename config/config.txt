@@ -15,4 +15,6 @@ $Singleton=init.txt
 #--------------server port
 port=2000
 
+maxIncomingConnection=2000
+
 ipWhiteList=127.0.0.1

@@ -44,8 +44,8 @@
 
 #----------------------RDMA Server
 *SyncServer=net.vicp.lylab.server.runtime.SyncServer
-^taskQueue=&LYTaskQueue
 ^dispatcher=&dispatcher
+^maxHandlerSize=&maxIncomingConnection
 ^port=&port
 ^protocol=&protocol
 ^heartBeat=&heartBeat
