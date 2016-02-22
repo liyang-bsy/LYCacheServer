@@ -1,6 +1,3 @@
-#---------------------LYTQ
-*LYTaskQueue=net.vicp.lylab.utils.tq.LYTaskQueue
-
 #---------------------LYCache
 *LYCache=net.vicp.lylab.utils.cache.LYCache
 ^memoryLimitation=6442450944
